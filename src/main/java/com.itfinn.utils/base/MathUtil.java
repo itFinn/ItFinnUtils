@@ -14,7 +14,7 @@ public class MathUtil {
      * @return BigDecimal, str为empty时返回null。
      */
     public static BigDecimal toBigDecimal(String str) {
-        if (StringUtils.isEmpty(str)) {
+        if (StringUtil.isEmpty(str)) {
             return null;
         }
         return new BigDecimal(str);
