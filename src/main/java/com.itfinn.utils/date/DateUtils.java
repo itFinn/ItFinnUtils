@@ -14,6 +14,39 @@ import java.util.Date;
 public class DateUtils {
     private static final String[] weeks = {"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
 
+    public static final SimpleDateFormat sdf_day = new SimpleDateFormat("yyyy-MM-dd");
+
+    public static final SimpleDateFormat sdf_day_m = new SimpleDateFormat("yyyy/MM/dd");
+
+    public static final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+    public static final SimpleDateFormat sdf_day_time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+    public static final SimpleDateFormat sdf_chin_day_time = new SimpleDateFormat("yyyy年M月d日");
+
+    public static final SimpleDateFormat sdf_yyyy_mm = new SimpleDateFormat("yyyy年M月d日 HH:mm");
+
+    public static final SimpleDateFormat sdf_day_short = new SimpleDateFormat("MM-dd");
+
+
+    /**
+     * 传入日期获取星期几
+     * @param date
+     * @return
+     */
+    public static String getWeekOfDate(Date date) {
+        String[] weekOfDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+        int w = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0) {
+            w = 0;
+        }
+        return weekOfDays[w];
+    }
+
     /**
      * 根据指定格式获取当前时间
      *
