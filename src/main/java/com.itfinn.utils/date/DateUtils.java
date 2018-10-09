@@ -31,6 +31,7 @@ public class DateUtils {
 
     /**
      * 传入日期获取星期几
+     *
      * @param date
      * @return
      */
@@ -540,11 +541,11 @@ public class DateUtils {
     }
 
     /**
-     * 比较两个日期相隔多少天(月、年) 
+     * 比较两个日期相隔多少天(月、年)
      * 例：
-     * &nbsp;compareDate("2009-09-12", null, 0);//比较天 
-     * &nbsp;compareDate("2009-09-12", null, 1);//比较月 
-     * &nbsp;compareDate("2009-09-12", null, 2);//比较年 
+     * &nbsp;compareDate("2009-09-12", null, 0);//比较天
+     * &nbsp;compareDate("2009-09-12", null, 1);//比较月
+     * &nbsp;compareDate("2009-09-12", null, 2);//比较年
      *
      * @param startDay 需要比较的时间 不能为空(null),需要正确的日期格式 ,如：2009-09-12
      * @param endDay   被比较的时间  为空(null)则为当前时间
@@ -587,6 +588,24 @@ public class DateUtils {
             n = (int) n / 365;
         }
         return n;
+    }
+
+    /**
+     * 计算两个日期之间相差的天数
+     *
+     * @param smdate 较小的时间
+     * @param bdate  较大的时间
+     * @return 相差天数
+     */
+    public static int daysBetween(Date smdate, Date bdate) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(smdate);
+        long time1 = cal.getTimeInMillis();
+        cal.setTime(bdate);
+        long time2 = cal.getTimeInMillis();
+        long between_days = (time2 - time1) / (1000 * 3600 * 24);
+
+        return Integer.parseInt(String.valueOf(between_days));
     }
 
     /**
@@ -652,6 +671,20 @@ public class DateUtils {
     }
 
     /**
+     * 比较两个日期的大小
+     *
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public static long compareDate(Date date1, Date date2) {
+        long date1l = date1.getTime();
+        long date2l = date2.getTime();
+
+        return (date1l - date2l);
+    }
+
+    /**
      * 获取指定月份的第一天
      *
      * @param date
@@ -708,5 +741,60 @@ public class DateUtils {
         int last_day_of_week = first_day_of_week + 6; // 星期日
         now.set(now.DATE, last_day_of_week);
         return now.getTime();
+    }
+
+    /**
+     * 根据日期返回时上午还是下午
+     *
+     * @param date
+     * @return
+     */
+    public static String getAPM(Date date) {
+        String str = "";
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        if (hour < 12) {
+            str = "上午";
+        } else {
+            str = "下午";
+        }
+        return str;
+    }
+
+    /**
+     * 获取n月后的一天
+     *
+     * @param date
+     * @param n
+     * @return
+     */
+    public static Date addMonthDay(Date date, int n) {
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+        calendar.add(calendar.MONTH, n);
+        Date result = calendar.getTime();
+        return result;
+    }
+
+    /**
+     * 获取n天后的一天
+     *
+     * @param date
+     * @param n
+     * @return
+     */
+    public static Date addDay(Date date, int n) {
+        Calendar calendar = Calendar.getInstance();
+        if (date != null) {
+            calendar.setTime(date);
+        }
+        calendar.add(calendar.DATE, n);
+        Date result = calendar.getTime();
+        return result;
     }
 }

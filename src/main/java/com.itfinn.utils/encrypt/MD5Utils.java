@@ -1,7 +1,6 @@
 package com.itfinn.utils.encrypt;
 
-import com.itfinn.utils.base.StringUtils;
-import org.apache.poi.util.StringUtil;
+import com.itfinn.utils.base.StringUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -78,7 +77,7 @@ class MD5Utils {
         if (password == null) {
             throw new IllegalArgumentException("password不能为null");
         }
-        if (StringUtils.isEmpty(salt)) {
+        if (StringUtil.isEmpty(salt)) {
             throw new IllegalArgumentException("salt不能为空");
         }
         if ((salt.toString().lastIndexOf("{") != -1) || (salt.toString().lastIndexOf("}") != -1)) {

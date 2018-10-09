@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * @author itFinn.com
  * @date 2018-03-05 17:10
  */
-public class StringUtils {
+public class StringUtil {
 
 
     private static final int INDEX_NOT_FOUND = -1;
